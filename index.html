@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>practica web</title>
+    <style>
+        body { background: #171718; font-family: sans-serif; padding: 20px; color: #333; }
+        h1 { background: #e3f2fd; color: #1565c0; text-align: center; padding: 12px; border-radius: 6px; }
+        hr { border: none; height: 3px; background: #3498db; margin: 20px 0; border-radius: 2px; }
+        .box { background: #fff; border-radius: 8px; box-shadow: 0 3px 8px rgba(0,0,0,0.08); padding: 15px; margin-bottom: 20px; }
+        
+        /* Tabla con borde exterior verde y esquinas redondeadas verdes */
+        table { width: 100%; border-collapse: separate; border-spacing: 0; border: 4px solid #2e7d32; border-radius: 12px; overflow: hidden; background: #fff; }
+        th, td { padding: 10px; border-bottom: 1px solid #ddd; text-align: left; }
+        th { background: #2c3e50; color: white; }
+        th:first-child { border-top-left-radius: 8px; }
+        th:last-child { border-top-right-radius: 8px; }
+
+        .img-principal { width: 450px; height: 280px; object-fit: cover; border-radius: 6px; display: block; margin: auto; box-shadow: 0 4px 8px rgba(0,0,0,0.15); }
+        form { display: grid; gap: 10px; max-width: 400px; margin: auto; }
+        input { padding: 8px; border: 1px solid #ccc; border-radius: 4px; }
+        .acciones { display: flex; justify-content: space-between; margin-top: 10px; }
+        
+        button { 
+            padding: 9px 18px; 
+            border: none; 
+            border-radius: 6px; 
+            color: white; 
+            cursor: pointer; 
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6); 
+            transition: 0.2s; 
+        }
+        button:hover { 
+            transform: translateY(-3px); 
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.8); 
+        }
+        
+        .b-guardar { background: #2e7d32; }
+        .b-imprimir { background: #ef6c00; }
+        .b-salir { background: #c62828; }
+
+        .galeria { display: flex; gap: 15px; justify-content: center; }
+        .galeria img { width: 180px; height: 130px; object-fit: cover; border-radius: 6px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); transition: 0.2s; }
+        .galeria img:hover { transform: scale(1.03); }
+    </style>
+</head>
+<body>
+
+    <h1>practica web</h1>
+    <hr style="background: #3498db;">
+
+    <div class="box"><img src="https://static.vecteezy.com/system/resources/thumbnails/072/454/698/small/beautiful-sunset-over-a-reflective-beach-with-rocky-formations-capturing-the-vibrant-colors-and-tranquil-atmosphere-of-a-serene-coastal-landscape-at-dusk-photo.jpg" class="img-principal"></div>
+    <hr style="background: #e67e22;">
+
+    <div class="box">
+        <h3>Tabla</h3>
+        <table id="tabla"><tr><th>Código</th><th>Nombre</th><th>Dirección</th><th>Correo</th></tr></table>
+    </div>
+    <hr style="background: #9b59b6;">
+
+    <div class="box">
+        <h3>Formulario</h3>
+        <form id="form" onsubmit="event.preventDefault()">
+            <input type="text" id="c" placeholder="Código" required>
+            <input type="text" id="n" placeholder="Nombre" required>
+            <input type="text" id="d" placeholder="Dirección" required>
+            <input type="email" id="co" placeholder="Correo" required>
+            <input type="password" placeholder="Contraseña" required>
+            <div class="acciones">
+                <button class="b-guardar" onclick="add()">Guardar</button>
+                <button class="b-imprimir" onclick="window.print()">Imprimir</button>
+                <button class="b-salir" onclick="window.close()">Salir</button>
+            </div>
+        </form>
+    </div>
+    <hr style="background: #e74c3c;">
+
+    <div class="box">
+        <h3>Galería</h3>
+        <div class="galeria">
+            <img src="https://picsum.photos/id/1015/180/130">
+            <img src="https://picsum.photos/id/1025/180/130">
+            <img src="https://picsum.photos/id/1035/180/130">
+        </div>
+    </div>
+
+    <script>
+        function add() {
+            let c = document.getElementById('c').value, n = document.getElementById('n').value, d = document.getElementById('d').value, co = document.getElementById('co').value;
+            if(!c || !n) return alert('Completa código y nombre');
+            document.getElementById('tabla').insertRow().innerHTML = `<td>${c}</td><td>${n}</td><td>${d}</td><td>${co}</td>`;
+            document.getElementById('form').reset();
+        }
+    </script>
+</body>
+</html>
